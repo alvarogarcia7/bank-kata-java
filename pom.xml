@@ -8,6 +8,11 @@
     <artifactId>bank</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <parent>
+        <groupId>com.github.alvarogarcia7</groupId>
+        <artifactId>java-parent</artifactId>
+        <version>v0.0.1</version>
+    </parent>
 
     <repositories>
         <repository>
