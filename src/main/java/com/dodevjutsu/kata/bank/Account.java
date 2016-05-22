@@ -23,6 +23,6 @@ public class Account {
 	}
 
 	public void withdraw (final int amount) {
-		activities.save(-500);
+		activities.save(-amount);
 	}
 }
