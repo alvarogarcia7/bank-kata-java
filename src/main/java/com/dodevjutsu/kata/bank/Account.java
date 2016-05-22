@@ -10,7 +10,7 @@ public class Account {
 	public Account (final Console console, final Clock clock) {
 	}
 
-	public Account (final Console console, final Activities activities, final StatementPrinter statementPrinter) {
+	public Account (final Activities activities, final StatementPrinter statementPrinter) {
 		this.activities = activities;
 		this.statementPrinter = statementPrinter;
 	}

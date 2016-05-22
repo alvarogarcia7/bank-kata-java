@@ -2,7 +2,6 @@ package com.dodevjutsu.kata.bank.test.unit;
 
 import com.dodevjutsu.kata.bank.Account;
 import com.dodevjutsu.kata.bank.Activities;
-import com.dodevjutsu.kata.bank.Console;
 import com.dodevjutsu.kata.bank.Statement;
 import com.dodevjutsu.kata.bank.StatementPrinter;
 import org.jmock.Expectations;
@@ -16,15 +15,13 @@ public class AccountShould {
 	private Mockery context;
 	private Account account;
 	private Activities activities;
-	private Console console;
 
 	@Before
 	public void setUp () {
 		context = new Mockery();
 		activities = context.mock(Activities.class);
-		console = context.mock(Console.class);
 		statementPrinter = context.mock(StatementPrinter.class);
-		account = new Account(console, activities, statementPrinter);
+		account = new Account(activities, statementPrinter);
 	}
 
 	@Test
