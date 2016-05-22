@@ -18,7 +18,7 @@ public class Account {
 	}
 
 	public void deposit (final int amount) {
-		activities.save(500);
+		activities.save(amount);
 
 	}
 
