@@ -36,4 +36,17 @@ public class AccountShould {
 	}
 
 
+	@Test
+	public void deposit () {
+
+		context.checking(new Expectations() {{
+			oneOf(activities).save(500);
+		}});
+
+		account.deposit(500);
+
+		context.assertIsSatisfied();
+	}
+
+
 }
