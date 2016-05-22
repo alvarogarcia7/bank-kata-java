@@ -3,6 +3,8 @@ package com.dodevjutsu.kata.bank.test.unit;
 import com.dodevjutsu.kata.bank.Account;
 import com.dodevjutsu.kata.bank.Activities;
 import com.dodevjutsu.kata.bank.Console;
+import com.dodevjutsu.kata.bank.Statement;
+import com.dodevjutsu.kata.bank.StatementPrinter;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
@@ -10,6 +12,7 @@ import org.junit.Test;
 
 public class AccountShould {
 
+	private StatementPrinter statementPrinter;
 	private Mockery context;
 	private Account account;
 	private Activities activities;
@@ -20,7 +23,8 @@ public class AccountShould {
 		context = new Mockery();
 		activities = context.mock(Activities.class);
 		console = context.mock(Console.class);
-		account = new Account(console, activities);
+		statementPrinter = context.mock(StatementPrinter.class);
+		account = new Account(console, activities, statementPrinter);
 	}
 
 	@Test
@@ -44,6 +48,21 @@ public class AccountShould {
 		}});
 
 		account.deposit(500);
+
+		context.assertIsSatisfied();
+	}
+
+	@Test
+	public void print_statement_with_a_single_transaction () {
+
+		Statement ANY_STATEMENT = new Statement();
+
+		context.checking(new Expectations() {{
+			oneOf(activities).createStatement(); will(returnValue(ANY_STATEMENT));
+			oneOf(statementPrinter).print(ANY_STATEMENT);
+		}});
+
+		account.printStatement();
 
 		context.assertIsSatisfied();
 	}
