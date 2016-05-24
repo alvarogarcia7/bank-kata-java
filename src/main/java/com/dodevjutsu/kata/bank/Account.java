@@ -16,8 +16,7 @@ public class Account {
 	}
 
 	public void printStatement () {
-		final Statement statement = activities.createStatement();
-		statementPrinter.print(statement);
+		activities.createStatement();
 	}
 
 	public void deposit (final int amount) {

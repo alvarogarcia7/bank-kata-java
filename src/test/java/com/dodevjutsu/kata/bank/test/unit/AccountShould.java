@@ -56,7 +56,6 @@ public class AccountShould {
 
 		context.checking(new Expectations() {{
 			oneOf(activities).createStatement(); will(returnValue(ANY_STATEMENT));
-			oneOf(statementPrinter).print(ANY_STATEMENT);
 		}});
 
 		account.printStatement();
