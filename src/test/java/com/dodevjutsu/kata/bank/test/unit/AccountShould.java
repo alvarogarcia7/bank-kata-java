@@ -11,57 +11,58 @@ import org.junit.Test;
 
 public class AccountShould {
 
-	private StatementPrinter statementPrinter;
-	private Mockery context;
-	private Account account;
-	private Activities activities;
+    private StatementPrinter statementPrinter;
+    private Mockery context;
+    private Account account;
+    private Activities activities;
 
-	@Before
-	public void setUp () {
-		context = new Mockery();
-		activities = context.mock(Activities.class);
-		statementPrinter = context.mock(StatementPrinter.class);
-		account = new Account(activities, statementPrinter);
-	}
+    @Before
+    public void setUp () {
+        context = new Mockery();
+        activities = context.mock(Activities.class);
+        statementPrinter = context.mock(StatementPrinter.class);
+        account = new Account(activities, statementPrinter);
+    }
 
-	@Test
-	public void withdraw () {
+    @Test
+    public void withdraw () {
 
-		context.checking(new Expectations() {{
-			oneOf(activities).save(-500);
-		}});
+        context.checking(new Expectations() {{
+            oneOf(activities).save(-500);
+        }});
 
-		account.withdraw(500);
+        account.withdraw(500);
 
-		context.assertIsSatisfied();
-	}
+        context.assertIsSatisfied();
+    }
 
 
-	@Test
-	public void deposit () {
+    @Test
+    public void deposit () {
 
-		context.checking(new Expectations() {{
-			oneOf(activities).save(500);
-		}});
+        context.checking(new Expectations() {{
+            oneOf(activities).save(500);
+        }});
 
-		account.deposit(500);
+        account.deposit(500);
 
-		context.assertIsSatisfied();
-	}
+        context.assertIsSatisfied();
+    }
 
-	@Test
-	public void print_statement_with_a_single_transaction () {
+    @Test
+    public void print_statement_with_a_single_transaction () {
 
-		Statement ANY_STATEMENT = new Statement();
+        Statement ANY_STATEMENT = new Statement();
 
-		context.checking(new Expectations() {{
-			oneOf(activities).createStatement(); will(returnValue(ANY_STATEMENT));
-		}});
+        context.checking(new Expectations() {{
+            oneOf(activities).createStatement();
+            will(returnValue(ANY_STATEMENT));
+        }});
 
-		account.printStatement();
+        account.printStatement();
 
-		context.assertIsSatisfied();
-	}
+        context.assertIsSatisfied();
+    }
 
 
 }
