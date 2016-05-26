@@ -8,10 +8,10 @@ public class Statement {
         this.lines = lines;
     }
 
-    public void printOn (final Console console) {
-        console.print("date || credit || debit || balance");
+    public void printOn (final LinePrinter linePrinter) {
+        linePrinter.printHeader();
         for (int i = lines.length - 1; i >= 0; i--) {
-            console.print(format(lines[i]));
+            linePrinter.print(lines[i]);
         }
     }
 
