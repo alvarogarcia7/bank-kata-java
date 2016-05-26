@@ -1,7 +1,11 @@
 package com.dodevjutsu.kata.bank.test.unit;
 
+import com.dodevjutsu.kata.bank.Amount;
+import com.dodevjutsu.kata.bank.Balance;
 import com.dodevjutsu.kata.bank.Console;
 import com.dodevjutsu.kata.bank.ConsoleLinePrinter;
+import com.dodevjutsu.kata.bank.Date;
+import com.dodevjutsu.kata.bank.Line;
 import com.dodevjutsu.kata.bank.LinePrinter;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -28,6 +32,17 @@ public class ConsoleLinePrinterShould {
         }});
 
         linePrinter.printHeader();
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void print_the_a_line() {
+        context.checking(new Expectations() {{
+            oneOf(console).print("01/04/2000 || || 23.00 || 33.00");
+        }});
+
+        linePrinter.print(new Line(new Date("01/04/2000"), new Amount(23), new Balance(33)));
 
         context.assertIsSatisfied();
     }
