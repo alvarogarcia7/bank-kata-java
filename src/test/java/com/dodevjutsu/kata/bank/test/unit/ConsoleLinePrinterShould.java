@@ -37,12 +37,23 @@ public class ConsoleLinePrinterShould {
     }
 
     @Test
-    public void print_the_a_line() {
+    public void print_the_a_credit_line () {
         context.checking(new Expectations() {{
             oneOf(console).print("01/04/2000 || 23.00 || || 33.00");
         }});
 
         linePrinter.print(new Line(new Date("01/04/2000"), new Amount(23), new Balance(33)));
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void print_the_a_debit_line () {
+        context.checking(new Expectations() {{
+            oneOf(console).print("01/04/2000 || || 23.00 || 33.00");
+        }});
+
+        linePrinter.print(new Line(new Date("01/04/2000"), new Amount(-23), new Balance(33)));
 
         context.assertIsSatisfied();
     }
