@@ -14,6 +14,7 @@ import org.junit.Test;
 public class StatementShould {
 
     private Mockery context;
+    private LinePrinter linePrinter;
 
     @Before
     public void setUp () {
@@ -23,7 +24,7 @@ public class StatementShould {
     @Test
     public void print_a_statement_with_a_single_activity () {
 
-        final LinePrinter linePrinter = context.mock(LinePrinter.class);
+        linePrinter = context.mock(LinePrinter.class);
         Line line1 = new Line(new Date("10/01/2012"), new Amount(1000), new Balance(1000));
         Line line2 = new Line(new Date("13/01/2012"), new Amount(2000), new Balance(3000));
         Line line3 = new Line(new Date("14/01/2012"), new Amount(-500), new Balance(2500));
